@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surface Area Calculator - Hardscape Tools</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🏗️ Hardscape Tools</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="calculator.html" class="active">Surface Calculator</a></li>
+                <li><a href="invoice.html">Invoice Generator</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="calculator-section">
+            <h1>📐 Surface Area Calculator</h1>
+            <p class="subtitle">Estimate dimensions, materials, and costs for your hardscape projects</p>
+
+            <div class="calculator-grid">
+                <!-- Left Panel: Photo Upload & Inputs -->
+                <div class="calculator-panel">
+                    <h2>Project Details</h2>
+
+                    <div class="form-group">
+                        <label>Upload Before Photo</label>
+                        <div class="photo-upload">
+                            <input type="file" id="photoUpload" accept="image/*">
+                            <div id="photoPreview" class="photo-preview">
+                                <p>No photo uploaded</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="width">Width (feet)</label>
+                        <input type="number" id="width" placeholder="20" step="0.5">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="length">Length (feet)</label>
+                        <input type="number" id="length" placeholder="30" step="0.5">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="thickness">Concrete Thickness (inches)</label>
+                        <select id="thickness">
+                            <option value="4">4 inches (Standard)</option>
+                            <option value="6">6 inches (Heavy Duty)</option>
+                            <option value="8">8 inches (Extra Heavy)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="concreteType">Concrete Type</label>
+                        <select id="concreteType">
+                            <option value="standard">Standard Concrete - $150/yard</option>
+                            <option value="reinforced">Reinforced Concrete - $175/yard</option>
+                            <option value="colored">Colored Concrete - $200/yard</option>
+                            <option value="stamped">Stamped Concrete - $225/yard</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="laborRate">Labor Rate ($/hour)</label>
+                        <input type="number" id="laborRate" placeholder="65" step="5" value="65">
+                    </div>
+
+                    <button class="btn btn-primary btn-full" onclick="calculateMaterials()">Calculate</button>
+                </div>
+
+                <!-- Right Panel: Results -->
+                <div class="calculator-panel">
+                    <h2>Estimate Results</h2>
+
+                    <div id="results" class="results-hidden">
+                        <div class="result-item">
+                            <span class="result-label">Surface Area:</span>
+                            <span id="resultArea" class="result-value">- sq ft</span>
+                        </div>
+
+                        <div class="result-item">
+                            <span class="result-label">Concrete Volume:</span>
+                            <span id="resultVolume" class="result-value">- cubic yards</span>
+                        </div>
+
+                        <div class="result-item">
+                            <span class="result-label">Material Cost:</span>
+                            <span id="resultMaterialCost" class="result-value">$-</span>
+                        </div>
+
+                        <div class="result-item">
+                            <span class="result-label">Estimated Labor (8 hrs):</span>
+                            <span id="resultLaborCost" class="result-value">$-</span>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="result-item total">
+                            <span class="result-label">Total Estimate:</span>
+                            <span id="resultTotal" class="result-value">$-</span>
+                        </div>
+
+                        <div class="result-item">
+                            <span class="result-label">With 20% Markup:</span>
+                            <span id="resultMarkup" class="result-value">$-</span>
+                        </div>
+
+                        <button class="btn btn-secondary btn-full" onclick="saveEstimate()">Save Estimate</button>
+                        <button class="btn btn-outline btn-full" onclick="useInInvoice()">Use in Invoice</button>
+                    </div>
+
+                    <div id="noResults" class="no-results">
+                        <p>Fill in project details and click Calculate to see estimates</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saved Estimates -->
+            <div class="saved-estimates">
+                <h2>Saved Estimates</h2>
+                <div id="savedList" class="saved-list">
+                    <p>No saved estimates yet</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hardscape Tools. Built for contractors, by contractors.</p>
+    </footer>
+
+    <script src="calculator.js"></script>
+</body>
+</html>
